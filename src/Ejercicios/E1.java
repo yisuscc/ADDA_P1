@@ -48,5 +48,28 @@ public class E1 {
 	}
 	
 	// versión recirsiva final
+	public static  Map<Integer, List<String>> ej1Recursivo ( Integer varA, String varB,
+			Integer varC,String varD, Integer varE){
+		 EnteroCadena s = new EnteroCadena(varA, varB);
+		 Map<Integer, List<String>> d = new HashMap<>();
+		 
+		
+				
+				return null;
+		
+	}
+	public static  Map<Integer, List<String>> ej1RecursivoAux ( Integer varA, String varB,
+			Integer varC,String varD, Integer varE,  Map<Integer, List<String>> d, EnteroCadena s){
+		String valor = s.s()+varD;
+		Integer clave = valor.length();
+		if( ) {
+			
+		}
+		return d;
+		
+	}
+	
+	
+	
 
 }
