@@ -3,6 +3,7 @@
 	<name>PI1_jescarcar5</name>
 	<comment></comment>
 	<projects>
+		<project>ada_v2_18</project>
 		<project>DatosCompartidos</project>
 		<project>ParteComun</project>
 	</projects>
