@@ -52,17 +52,34 @@ public class E1 {
 			Integer varC,String varD, Integer varE){
 		 EnteroCadena s = new EnteroCadena(varA, varB);
 		 Map<Integer, List<String>> d = new HashMap<>();
-		 
+			Function<EnteroCadena, EnteroCadena>  funk = x-> {
+				return new EnteroCadena(x.a(), x.a()%3==0?x.s()+x.a().toString():x.s().substring(x.a()%x.s().length()));
+				
+			};
 		
 				
 				return null;
 		
 	}
 	public static  Map<Integer, List<String>> ej1RecursivoAux ( Integer varA, String varB,
-			Integer varC,String varD, Integer varE,  Map<Integer, List<String>> d, EnteroCadena s){
+			Integer varC,String varD, Integer varE,  Map<Integer, List<String>> d, EnteroCadena s,Function<EnteroCadena, EnteroCadena> funk){
 		String valor = s.s()+varD;
 		Integer clave = valor.length();
-		if( ) {
+		if(clave<varE) {
+			if(d.containsKey(clave))  { // existe ya la clave
+				List<String>ls = d.get(clave);
+			ls.add(valor);
+			d.put(clave, ls);
+			EnteroCadena ns = funk.apply(s);
+			ej1RecursivoAux(varA, varB, varC, varD, varE, d, ns, funk);
+			}else {
+				// no existe la clave 
+				List<String> ls = new LinkedList<>();
+				ls.add(valor);
+				d.put(clave, ls);
+				EnteroCadena ns = funk.apply(s);
+				ej1RecursivoAux(varA, varB, varC, varD, varE, d, ns, funk);
+			}
 			
 		}
 		return d;
