@@ -28,9 +28,10 @@ public class Ej3 {
 	public static String ej4RecCm(Integer a, Integer b, Integer c) {
 		//he creado un record trio, porque no consigo importar el de repositorio 
 		Map<Trio, String> d = new HashMap();
-return null;
+		return ej4RecCmAux(a, b, c, d);
+
 	}
-	private static String ej4RecCm(Integer a, Integer b, Integer c,Map<Trio,String> d ) {
+	private static String ej4RecCmAux(Integer a, Integer b, Integer c,Map<Trio,String> d ) {
 		Trio  clave = new Trio(a, b, c);
 		String valor ;
 
@@ -84,15 +85,15 @@ return null;
 						valor= "(" +d.get(auxC)+ "/" +d.get(auxD)+ ")";
 						d.put(clave, valor);
 					}
-					
+
 				}
-				
+
 			}
-			
+
 		}
 		return d.get(claveFinal);
-		
-		
+
+
 
 	}
 	public static void main(String[] args) {
