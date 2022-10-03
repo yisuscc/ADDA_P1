@@ -23,7 +23,8 @@ public class test2 {
 			String  d = datos[3];
 			Integer e = Integer.parseInt(datos[4]);
 			
-			System.out.println("Versíon del eneunciado: " + Ejercicios.E1.ejercicioA(a, b, c, d, e));
+			System.out.println("Versin del enunciado: " + Ejercicios.E1.ejercicioA(a, b, c, d, e));
+			System.out.println("Versión Iterativa 1 : " + Ejercicios.E1.ej1Iterativo(a, b, c, d, e));
 		};
 		try {
 			@SuppressWarnings("resource")
