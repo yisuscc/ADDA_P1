@@ -76,6 +76,55 @@ public class E1 {
 		return d;
 
 	}
+	// versión recursiva final 
+	public static Map<Integer,List<String>>ej1RecursivoFinal ( Integer varA, String varB,
+			Integer varC,String varD, Integer varE){
+		Map<Integer, List<String>> d = new HashMap<>();
+		EnteroCadena s = new EnteroCadena(varA, varB); // la semilla
+
+		UnaryOperator<EnteroCadena> nx = elem ->
+		{ String aux ;
+		if(elem.a()%3==0) {
+			aux = elem.s()+elem.a().toString();
+		}else {
+			aux = elem.s().substring(elem.a()%elem.s().length());
+		}
+		return  EnteroCadena.of(elem.a()+2,aux);
+		};
+		return ej1RecursivoAux(varA, varB, varC, varD, varE, s, nx, d);
+
+	}
+	private static Map<Integer,List<String>>ej1RecursivoAux ( Integer varA, String varB,
+			Integer varC,String varD,
+			Integer varE,EnteroCadena s,
+			UnaryOperator<EnteroCadena> nx,
+			Map<Integer, List<String>> d){
+
+		String valor = s.s()+varD;
+		Integer clave = valor.length();
+		if(clave<varE) {
+			if(d.containsKey(clave))  { // existe ya la clave
+				List<String>ls = d.get(clave);
+				ls.add(valor);
+				d.put(clave, ls);
+			
+				
+			}else {
+				// no existe la clave 
+				List<String> ls = new LinkedList<>();
+				ls.add(valor);
+				d.put(clave, ls);
+			
+			}
+			 EnteroCadena ns= nx.apply(s);
+			ej1RecursivoAux(varA, varB, varC, varD, varE, ns, nx, d);
+
+		}
+
+		return d;
+
+	}
+
 
 
 
