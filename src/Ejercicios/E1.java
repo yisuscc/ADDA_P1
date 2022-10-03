@@ -6,8 +6,29 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class E1 {
+	
+	 // versión del eninciado 
+	public static Map<Integer,List<String>>ejercicioA ( Integer varA, String varB,
+			Integer varC,String varD, Integer varE){
+		UnaryOperator<EnteroCadena> nx = elem ->
+		{ String aux ;
+		if(elem.a()%3==0) {
+			aux = elem.s()+elem.a().toString();
+		}else {
+			aux = elem.s().substring(elem.a()%elem.s().length());
+		}
+			return  EnteroCadena.of(elem.a()+2,aux);
+		};
+		return Stream.iterate(EnteroCadena.of(varA, varB), elem->elem.a()<varC,nx)
+				.map(elem->elem.s()+varD)
+				.filter(nom->nom.length()<varE)
+				.collect(Collectors.groupingBy(String::length));
+	}
 	// version iterativa
 	public static  Map<Integer, List<String>> ej1Iterativo ( Integer varA, String varB,
 			Integer varC,String varD, Integer varE) {
@@ -41,6 +62,7 @@ public class E1 {
 				d.put(clave, ls);
 			}
 			}
+			 s= funk.apply(s);
 
 		}
 
@@ -56,9 +78,9 @@ public class E1 {
 			return new EnteroCadena(x.a(), x.a()%3==0?x.s()+x.a().toString():x.s().substring(x.a()%x.s().length()));
 
 		};
+		return ej1RecursivoAux(varA, varB, varC, varD, varE, d, s, funk);
 
-
-		return d;
+		
 
 	}
 	public static  Map<Integer, List<String>> ej1RecursivoAux ( Integer varA, String varB,
