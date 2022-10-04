@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class Ej3 {
+public class Ej4 {
 
 
 	public static String ej4Recsm(Integer a, Integer b, Integer c) {
@@ -96,9 +96,6 @@ public class Ej3 {
 
 
 	}
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-	}
 
 }

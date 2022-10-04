@@ -6,11 +6,11 @@ public class E2 {
 	//versión iterativa  while
 	
 	// versión recursiva no final
-	public static Integer Ej2Rec(Integer a, Integer b, String s) {
-		return Ej2RecAux(a, b, s);
+	public static Integer Ej2RecNF(Integer a, Integer b, String s) {
+		return Ej2RecNFAux(a, b, s);
 		
 	}
-	private static Integer Ej2RecAux(Integer a, Integer b, String s){
+	private static Integer Ej2RecNFAux(Integer a, Integer b, String s){
 //		if(a<0|| b<0) {
 //			throw new IllegalArgumentException("A y b tienen que ser positivos");
 //		}
@@ -23,11 +23,11 @@ public class E2 {
 				r = s.length()+a+b;
 			}
 			 else if (a%s.length()<b%s.length()) {
-				 r= a+b+Ej2Rec(a-1, b/2, s.substring(a%s.length(), b%s.length()));
+				 r= a+b+Ej2RecNFAux(a-1, b/2, s.substring(a%s.length(), b%s.length()));
 			 }			 
 			 
 			 else {
-				 r = a*b+Ej2Rec(a/2, b-1, s.substring(b%s.length(), a%s.length()));
+				 r = a*b+Ej2RecNFAux(a/2, b-1, s.substring(b%s.length(), a%s.length()));
 				
 			 }
 		
@@ -36,14 +36,17 @@ public class E2 {
 		
 		
 	}
-	// version recursiva  no final 
-	
+	// version recursiva  final 
+//	public static Integer Ej2RecFinal(Integer a, Integer b, String s) {
+//		
+//	}
+//	private static Integer Ej2RecFinalAux(Integer a, Integer b, String s) {
+//		
+//	}
 	
 	// versiónn funcional
 	
 	
-	public static void main(String[] args) {
-	System.out.println("Prueba" + Ej2Rec(50, 75, "algoritmo"));
-	}
+
 
 }
