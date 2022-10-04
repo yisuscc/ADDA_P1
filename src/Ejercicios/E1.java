@@ -1,5 +1,6 @@
 package Ejercicios;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -65,7 +66,7 @@ public class E1 {
 					d.put(clave, ls);
 				}else {
 					// no existe la clave 
-					List<String> ls = new LinkedList<>();
+					List<String> ls = new ArrayList<>();
 					ls.add(valor);
 					d.put(clave, ls);
 				}
@@ -102,23 +103,26 @@ public class E1 {
 
 		String valor = s.s()+varD;
 		Integer clave = valor.length();
-		if(clave<varE) {
-			if(d.containsKey(clave))  { // existe ya la clave
-				List<String>ls = d.get(clave);
-				ls.add(valor);
-				d.put(clave, ls);
-			
-				
-			}else {
-				// no existe la clave 
-				List<String> ls = new LinkedList<>();
-				ls.add(valor);
-				d.put(clave, ls);
-			
-			}
-			 EnteroCadena ns= nx.apply(s);
-			ej1RecursivoAux(varA, varB, varC, varD, varE, ns, nx, d);
 
+		if (s.a()< varC){
+			if(clave<varE) {
+				if(d.containsKey(clave))  { // existe ya la clave
+					List<String>ls = d.get(clave);
+					ls.add(valor);
+					d.put(clave, ls);
+
+
+				}else {
+					// no existe la clave 
+					List<String> ls = new LinkedList<>();
+					ls.add(valor);
+					d.put(clave, ls);
+
+				}
+				EnteroCadena ns= nx.apply(s);
+				ej1RecursivoAux(varA, varB, varC, varD, varE, ns, nx, d);
+
+			}
 		}
 
 		return d;
