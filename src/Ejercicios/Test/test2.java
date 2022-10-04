@@ -49,7 +49,7 @@ public class test2 {
 			 Integer b  = Integer.parseInt(datos[1]);
 			 String s = datos[2];
 			 System.out.println("Cadena: " + s);
-			 System.out.println("Versión recursiva final" + Ejercicios.E2.Ej2Rec(a, b, s));
+			 System.out.println("Versión recursiva no final: " + Ejercicios.E2.Ej2Rec(a, b, s));
 		};
 	
 		try {
@@ -62,7 +62,7 @@ public class test2 {
 	}
 	
 	public static void main(String[] args) {
-		testEj1();
-		//testEj2();
+		//testEj1();
+		testEj2();
 	}
 }
