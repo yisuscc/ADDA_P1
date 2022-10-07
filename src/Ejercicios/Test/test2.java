@@ -52,6 +52,8 @@ public class test2 {
 			 System.out.println("Cadena: " + s);
 			 System.out.println("Versión recursiva no final: " + Ejercicios.E2.Ej2RecNF(a, b, s));
 			 System.out.println("Versión recursiva final: " + Ejercicios.E2.Ej2RecFinal(a, b, s));
+			 System.out.println("Versión Iterativa: " + Ejercicios.E2.Ej2Iterativo(a, b, s));
+			 System.out.println("Versión Iterativa For: " + Ejercicios.E2.Ej2IterativoFor(a, b, s));
 		};
 	
 		try {

@@ -2,8 +2,11 @@ package Ejercicios;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.UnaryOperator;
+import java.util.stream.Stream;
 
 import us.lsi.common.Pair;
+import us.lsi.streams.Stream2;
 
 public class E2 {
 
@@ -73,26 +76,28 @@ public class E2 {
 
 	//versión iterativa  while
 	public static Integer Ej2Iterativo(Integer a, Integer b, String s) {
-		//Integer acum= 0;
+
 		Integer r;
-		Trio inicio = Trio.of(0, 0, 0);
+
 		Trio res  = Trio.of(a,b,s.length());
 		Map<Trio, Integer> d = new HashMap<>();
 		// con for queda mucho mas bonito y mejor 
 		Integer i = 0;  // se encarga de a
-		Integer j =0; // se encarga de b
-		Integer k = 0; // se encarga de s
-
-
+		// se encarga de b
+		// se encarga de s
+		Integer sl = s.length();
+		///parece que al inicio de cada bucle las variables no se resetean
 		while(i<=a){
-			while(j<=b){
-				while(k<=s.length()) {
+			Integer j =0; 
+			while(j<=b){ 
+				Integer k = 0; 
+				while(k<=sl) {
 
 					if(k==0) {
 						r = i*i+j*j;
 						d.put(Trio.of(i, j, k), r);
 					}
-					else if (i<2 || i<2){
+					else if (i<2 || j<2){
 						r = k+i+j;
 						d.put(Trio.of(i, j, k), r);
 					}
@@ -103,7 +108,7 @@ public class E2 {
 					}			 
 
 					else {
-						 Integer n = i%k- j%k;
+						Integer n = i%k- j%k;
 						r = i*j+d.get(Trio.of(i/2, j-1, n));
 						d.put(Trio.of(i, j, k), r);
 
@@ -118,7 +123,55 @@ public class E2 {
 		return d.get(res);
 
 	}
+
+	//iterativo for 
+	public static Integer Ej2IterativoFor(Integer a, Integer b, String s) {
+	
+		Trio res  = Trio.of(a,b,s.length());
+		Map<Trio, Integer> d = new HashMap<>();
+		for(Integer i = 0;i<=a;i++) {
+			for(Integer j=0;j<=b;j++) {
+				for(Integer k= 0;k<=s.length();k++) {
+					if(k==0) {
+						Integer r = i*i+j*j;
+						d.put(Trio.of(i, j, k), r);
+					}
+					else if (i<2 || j<2){
+						Integer r = k+i+j;
+						d.put(Trio.of(i, j, k), r);
+					}
+					else if (i%k<j%k) {
+						Integer n = j%k- i%k;
+						Integer r= i+j+d.get(Trio.of(i-1, j/2, n));
+						d.put(Trio.of(i, j, k), r);
+					}			 
+
+					else {
+						Integer n = i%k- j%k;
+						Integer r = i*j+d.get(Trio.of(i/2, j-1, n));
+						d.put(Trio.of(i, j, k), r);
+					}
+				}
+			}
+		}
+		return d.get(res);
+	}
 	// versiónn funcional
+	public static Integer Ej2FuncionalV1(Integer a, Integer b, String s) {
+		Trio res  = Trio.of(a,b,s.length());
+		Map<Trio, Integer> d = new HashMap<>();
+		Integer sl = s.length();
+		UnaryOperator<Trio> nextTrio = x->{
+			//caso k <=s
+			// usar modulo 
+			if(k<=s) {
+				
+			}
+			//caso j <= b
+			// caso i <= a
+		}
+	}
+	
 
 
 
