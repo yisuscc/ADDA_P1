@@ -2,6 +2,7 @@ package Ejercicios;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Consumer;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
@@ -158,18 +159,41 @@ public class E2 {
 	}
 	// versiónn funcional
 	public static Integer Ej2FuncionalV1(Integer a, Integer b, String s) {
-		Trio res  = Trio.of(a,b,s.length());
+		// version traducida directa del iterativo, 
+		Trio res  = Trio.of(a,b,s.length());// uso mi propio record de trio 
 		Map<Trio, Integer> d = new HashMap<>();
 		Integer sl = s.length();
-		UnaryOperator<Trio> nextTrio = x->{
-			//caso k <=s
-			// usar modulo 
-			if(k<=s) {
-				
+		Map<Trio, Integer> mapAux = new HashMap<>();
+		Consumer<Trio> con = x-> {
+			 Integer r; 
+			  Integer i = x.a();
+			  Integer j = x.b();
+			  Integer k = x.c();
+			 
+			if(k==0) {
+				r = i*i+j*j;
+				d.put(Trio.of(i, j, k), r);
 			}
-			//caso j <= b
-			// caso i <= a
-		}
+			else if (i<2 || j<2){
+				r = k+i+j;
+				d.put(Trio.of(i, j, k), r);
+			}
+			else if (i%k<j%k) {
+				Integer n = j%k- i%k;
+				r= i+j+d.get(Trio.of(i-1, j/2, n));
+				d.put(Trio.of(i, j, k), r);
+			}			 
+
+			else {
+				Integer n = i%k- j%k;
+				r = i*j+d.get(Trio.of(i/2, j-1, n));
+				d.put(Trio.of(i, j, k), r);
+
+			}
+			
+		};
+ Stream.iterate(Trio.of(a, b, sl), t-> t.hasNext(a, b, sl), t->Trio.nextTrio(t, a, b, sl)).forEach(con);
+return d.get(res);
 	}
 	
 

@@ -54,6 +54,7 @@ public class test2 {
 			 System.out.println("Versión recursiva final: " + Ejercicios.E2.Ej2RecFinal(a, b, s));
 			 System.out.println("Versión Iterativa: " + Ejercicios.E2.Ej2Iterativo(a, b, s));
 			 System.out.println("Versión Iterativa For: " + Ejercicios.E2.Ej2IterativoFor(a, b, s));
+			 System.out.println("Versión Funcional v1: " + Ejercicios.E2.Ej2FuncionalV1(a, b, s));
 		};
 	
 		try {
