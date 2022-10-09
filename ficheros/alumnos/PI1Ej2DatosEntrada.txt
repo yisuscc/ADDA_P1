@@ -1,6 +1,6 @@
 10,20,adda
-20,30,segundo
-30,40,analisis
-40,50,diseño
-50,75,algoritmo
-75,50,eficiente
+20,30,second course
+30,40,analysis
+40,50,design
+50,75,data
+75,50,algorithms

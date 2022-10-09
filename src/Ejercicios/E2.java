@@ -1,9 +1,11 @@
 package Ejercicios;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.UnaryOperator;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import us.lsi.common.Pair;
@@ -158,14 +160,14 @@ public class E2 {
 		return d.get(res);
 	}
 	// versiónn funcional
-	public static Integer Ej2FuncionalV1(Integer a, Integer b, String s) {
+	public static List<Trio> Ej2FuncionalV1(Integer a, Integer b, String s) {
 		// version traducida directa del iterativo, 
 		Trio res  = Trio.of(a,b,s.length());// uso mi propio record de trio 
 		Map<Trio, Integer> d = new HashMap<>();
 		Integer sl = s.length();
 		Map<Trio, Integer> mapAux = new HashMap<>();
 		Consumer<Trio> con = x-> {
-			 Integer r; 
+			 Integer r = null; 
 			  Integer i = x.a();
 			  Integer j = x.b();
 			  Integer k = x.c();
@@ -192,8 +194,8 @@ public class E2 {
 			}
 			
 		};
- Stream.iterate(Trio.of(a, b, sl), t-> t.hasNext(a, b, sl), t->Trio.nextTrio(t, a, b, sl)).forEach(con);
-return d.get(res);
+ 
+return Stream.iterate(Trio.of(a, b, sl), t-> t.hasNext(a, b, sl), t->Trio.nextTrio(t, a, b, sl)).collect(Collectors.toList());
 	}
 	
 
