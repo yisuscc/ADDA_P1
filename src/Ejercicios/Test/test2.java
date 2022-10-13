@@ -102,8 +102,8 @@ public class test2 {
 	
 	public static void main(String[] args) {
 		//testEj1();
-		//testEj2();
-		testEj3();
+		testEj2();
+		//>testEj3();
 		//testEj4();
 	}
 }

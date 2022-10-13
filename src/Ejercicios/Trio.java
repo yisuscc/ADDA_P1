@@ -1,5 +1,8 @@
 package Ejercicios;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public record Trio(Integer a , Integer b, Integer c) {
 	public static Trio of (Integer a , Integer b, Integer c) {
 		return new Trio(a, b, c);
@@ -62,10 +65,22 @@ public record Trio(Integer a , Integer b, Integer c) {
 	public  Boolean hasNext(Integer maxA, Integer maxB ,Integer maxC) {
 		Trio T = this;
 		Boolean r = false ; 
-		if(T.c()<(maxC)||T.a() <maxA  || T.b()<maxB) {
+		if(T.c()<=(maxC)||T.a() <maxA  || T.b()<maxB ) {
 			r = true; 
 		}
 		return r;
+	}
+	
+	public static List<Trio> fullSequence(Integer maxA, Integer maxB ,Integer maxC){
+		List<Trio> res = new LinkedList<>();
+		for(Integer i =0;i<= maxA;i++) {
+			for(Integer j =0;j<= maxB;j++) {
+				for(Integer k =0;k<= maxC;k++) {
+					res.add(Trio.of(i, j, k));
+				}
+			}
+		}
+		return res;
 	}
 
 }
