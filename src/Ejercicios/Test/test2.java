@@ -10,6 +10,7 @@ import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 import Ejercicios.E1;
+import Ejercicios.Ej3;
 import Ejercicios.Ej4;
 
 public class test2 {
@@ -65,6 +66,18 @@ public class test2 {
 			err.printStackTrace();
 		}
 	}
+	public static void testEj3() {
+		String file1A = "ficheros/alumnos/PI1Ej3DatosEntrada1A.txt";
+		String file1B = "ficheros/alumnos/PI1Ej3DatosEntrada1B.txt";
+		String file2A= "ficheros/alumnos/PI1Ej3DatosEntrada2A.txt";
+		String file2B ="ficheros/alumnos/PI1Ej3DatosEntrada2B.txt";
+		String file3A = "ficheros/alumnos/PI1Ej3DatosEntrada3A.txt";
+		String file3B = "ficheros/alumnos/PI1Ej3DatosEntrada3B.txt";
+		
+		System.out.println("Test1 (Iterativo): " + Ej3.ej3IterativoV1(file1A, file1B));
+		System.out.println("Test2 (Recursivo): " +Ej3.ej3RecursivoFinalV1(file2A, file2B));
+		System.out.println("Test3 (Funcional): "+Ej3.ej3Funcional(file3A, file3B));
+	}
 	public static void testEj4 () {
 		String filePath = "ficheros/alumnos/PI1Ej4DatosEntrada.txt";
 		Consumer<String> consu = x->{
@@ -88,8 +101,9 @@ public class test2 {
 	}
 	
 	public static void main(String[] args) {
-		testEj1();
+		//testEj1();
 		//testEj2();
+		testEj3();
 		//testEj4();
 	}
 }
