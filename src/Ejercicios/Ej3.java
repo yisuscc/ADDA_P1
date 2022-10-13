@@ -60,31 +60,35 @@ public class Ej3 {
 		while((p1 != null || p2!= null)) {
 			//Punto2D p = null; 
 
-			if (p2 == null || Comparator2.isLENull(p1, p2)) { // esta 1 condición define el orden 
-				
-				if(prd.test(p1)) {
+			if (p1!= null&&(p2 == null || Comparator2.isLENull(p1, p2))) { // esta 1 condición define el orden 
+				//Le toca el turno a p1
+				if( p1!= null&&prd.test(p1)) {
 					res.add(p1);
-					p1 = (i1.hasNext())?conver.apply(i1.next()):null;
-				}else if (prd.test(p2)) {
-					res.add(p2);
-					p2 = (i2.hasNext())?conver.apply(i2.next()):null;
-				}else {
-					p1 = (i1.hasNext())?conver.apply(i1.next()):null;
-					p2 = (i2.hasNext())?conver.apply(i2.next()):null;
+					
 				}
-			
+//				else if (p2!= null&&prd.test(p2)) {
+//					res.add(p2);
+//					p2 = (i2.hasNext())?conver.apply(i2.next()):null;
+//					p1 = (i1.hasNext())?conver.apply(i1.next()):null;
+//				}else {
+//					p1 = (i1.hasNext())?conver.apply(i1.next()):null;
+//					p2 = (i2.hasNext())?conver.apply(i2.next()):null;
+//				}
+				p1 = (i1.hasNext())?conver.apply(i1.next()):null;
 			}else {// caso contrario
-				if(prd.test(p2)) {
+				if(p2!= null&&prd.test(p2)) {
 					res.add(p2);
 					p2 = (i2.hasNext())?conver.apply(i2.next()):null;
-				}else if (prd.test(p1)) {
-					res.add(p1);
-					p1 = (i1.hasNext())?conver.apply(i1.next()):null;
-				}else {
-					p1 = (i1.hasNext())?conver.apply(i1.next()):null;
-					p2 = (i2.hasNext())?conver.apply(i2.next()):null;
 				}
-
+//				else if (p1!= null&&prd.test(p1)) {
+//					res.add(p1);
+//					p1 = (i1.hasNext())?conver.apply(i1.next()):null;
+//					p2 = (i2.hasNext())?conver.apply(i2.next()):null;
+//				}else {
+//					p1 = (i1.hasNext())?conver.apply(i1.next()):null;
+//					p2 = (i2.hasNext())?conver.apply(i2.next()):null;
+//				}
+				p2 = (i2.hasNext())?conver.apply(i2.next()):null;
 			}
 
 		}
