@@ -34,10 +34,12 @@ public class Ej3 {
 		// Hacemos el predicado 
 		Predicate<Punto2D> condicion = p->{
 			Boolean r = false;
-			if (p.getCuadrante()== Cuadrante.PRIMER_CUADRANTE || 
-					p.getCuadrante() == Cuadrante.TERCER_CUADRANTE) {
+			if (p.getCuadrante()== Cuadrante.TERCER_CUADRANTE) {
+				r = true;
+			}else if(p.getCuadrante().equals(Cuadrante.PRIMER_CUADRANTE)) {
 				r = true;
 			}
+			
 			return r;
 		};
 		Iterator<String> f1 = new IteratorFile(file1);
@@ -58,13 +60,30 @@ public class Ej3 {
 		while((p1 != null || p2!= null)) {
 			//Punto2D p = null; 
 
-			if ((p2 == null||!prd.test(p2)|| Comparator2.isLE(p1, p2))) {
-				res.add(p1);
-				p1 = (i1.hasNext())?conver.apply(i1.next()):null;
-
-			}else if(p2!=null&& prd.test(p2)){
-				res.add(p2);
-				p2 = (i2.hasNext())?conver.apply(i2.next()):null;
+			if (p2 == null || Comparator2.isLENull(p1, p2)) { // esta 1 condición define el orden 
+				
+				if(prd.test(p1)) {
+					res.add(p1);
+					p1 = (i1.hasNext())?conver.apply(i1.next()):null;
+				}else if (prd.test(p2)) {
+					res.add(p2);
+					p2 = (i2.hasNext())?conver.apply(i2.next()):null;
+				}else {
+					p1 = (i1.hasNext())?conver.apply(i1.next()):null;
+					p2 = (i2.hasNext())?conver.apply(i2.next()):null;
+				}
+			
+			}else {// caso contrario
+				if(prd.test(p2)) {
+					res.add(p2);
+					p2 = (i2.hasNext())?conver.apply(i2.next()):null;
+				}else if (prd.test(p1)) {
+					res.add(p1);
+					p1 = (i1.hasNext())?conver.apply(i1.next()):null;
+				}else {
+					p1 = (i1.hasNext())?conver.apply(i1.next()):null;
+					p2 = (i2.hasNext())?conver.apply(i2.next()):null;
+				}
 
 			}
 
