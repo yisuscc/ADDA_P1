@@ -1,5 +1,7 @@
 package Ejemplos;
 
+import java.util.stream.Stream;
+
 public class Ejemplo2 {
 	public static String soluciónRecursivaNoFinal(Integer a,Integer b) {
 		String r = null;
@@ -39,7 +41,27 @@ return r;
 		}
 		return ac+String.format("%d", (a+b),a/2, b-2);
 	}
+	public static record Tupla(String ac, Integer a, Integer b) {
+		// Constructor
+		public static Tupla of (String ac, Integer a, Integer b) {
+			return new Tupla(ac, a, b);
+		}
 
+		// Inicializador
+		public static  Tupla first(Integer a, Integer b) {
+			return of ("",a ,b);
+		}
+		
+		// actualizador 
+		public Tupla next() {
+			return of(ac+String.format("%d", a+b),a/2,b-2);
+		}
+		
+	}
+public static String  solucionFuncional(Integer a, Integer b) {
+	Tupla t = Stream.iterate(Tupla.first(a, b),e-> e.next()).filter(e-> e.a()<5 ||e.b <5).findFirst().get();
+	return  t.ac() +String.format("(%d)", t.a()*t.b());
+}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
