@@ -9,7 +9,7 @@ public class Ej4 {
 
 	public static String ej4Recsm(Integer a, Integer b, Integer c) {
 		String s;
-
+// se puede usrra el string formatter pero ya lo he implementado de esta forma 
 		if (a<2&& b<= 2||c<2) {
 			s = "(" +a.toString() + "+" +b.toString()+"+"+c.toString()+ ")";
 		}else if (a<3||b<3&&c<=3) {

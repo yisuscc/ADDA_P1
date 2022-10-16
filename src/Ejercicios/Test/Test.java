@@ -31,8 +31,7 @@ public class Test {
 		};
 		try {
 			@SuppressWarnings("resource")
-			// quien coño decidió que codificar los archivos en iso-8859-1
-			// en lugar de utf-8 era buena idea 
+			
 
 			Stream<String> lineas = Files.lines(filePath);
 			
@@ -104,8 +103,8 @@ public class Test {
 	
 	public static void main(String[] args) {
 		testEj1();
-		testEj2();
-		testEj3();
+		//testEj2();
+		//testEj3();
 		testEj4();
 	}
 }
