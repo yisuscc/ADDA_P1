@@ -13,7 +13,7 @@ import Ejercicios.E1;
 import Ejercicios.Ej3;
 import Ejercicios.Ej4;
 
-public class test2 {
+public class Test {
 	public static void testEj1() {
 	Path  filePath=Path.of("ficheros/alumnos/PI1Ej1DatosEntrada.txt");
 		Consumer<String> con = x-> {
@@ -56,6 +56,8 @@ public class test2 {
 			 System.out.println("Versión Iterativa: " + Ejercicios.E2.Ej2Iterativo(a, b, s));
 			 System.out.println("Versión Iterativa For: " + Ejercicios.E2.Ej2IterativoFor(a, b, s));
 			 System.out.println("Versión Funcional v1: " + Ejercicios.E2.Ej2FuncionalV1(a, b, s));
+			 System.out.println("Versión Funcional v2: " + Ejercicios.E2.Ej2FuncionalV2(a, b, s));
+			 System.out.println("Versión Funcional v3: " + Ejercicios.E2.Ej2FuncionalV3(a, b, s));
 		};
 	
 		try {
@@ -101,9 +103,9 @@ public class test2 {
 	}
 	
 	public static void main(String[] args) {
-		//testEj1();
+		testEj1();
 		testEj2();
-		//>testEj3();
-		//testEj4();
+		testEj3();
+		testEj4();
 	}
 }

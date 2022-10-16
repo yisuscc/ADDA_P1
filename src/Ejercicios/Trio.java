@@ -22,9 +22,10 @@ public record Trio(Integer a , Integer b, Integer c) {
 					nB = 0;
 					nA++;
 					if((nA%(maxA+1)==0)) {
-						nC= 0;
-						nB = 0;
-						nA = 0;
+						// así el hasNext da false 
+						nC= maxC+1;
+						nB = maxB+1;
+						nA = maxA+1;
 
 					}
 
@@ -65,7 +66,7 @@ public record Trio(Integer a , Integer b, Integer c) {
 	public  Boolean hasNext(Integer maxA, Integer maxB ,Integer maxC) {
 		Trio T = this;
 		Boolean r = false ; 
-		if(T.c()<=(maxC)||T.a() <maxA  || T.b()<maxB ) {
+		if(T.c()<=(maxC)&&T.a() <=maxA  && T.b()<=maxB ) {
 			r = true; 
 		}
 		return r;

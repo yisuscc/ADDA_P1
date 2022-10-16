@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -129,7 +131,7 @@ public class E2 {
 
 	//iterativo for 
 	public static Integer Ej2IterativoFor(Integer a, Integer b, String s) {
-	
+
 		Trio res  = Trio.of(a,b,s.length());
 		Map<Trio, Integer> d = new HashMap<>();
 		for(Integer i = 0;i<=a;i++) {
@@ -167,14 +169,14 @@ public class E2 {
 		Integer sl = s.length();
 		Map<Trio, Integer> mapAux = new HashMap<>();
 		Consumer<Trio> con = x-> {
-			 Integer r = null; 
-			  Integer i = x.a();
-			  Integer j = x.b();
-			  Integer k = x.c();
-			 
+			Integer r = null; 
+			Integer i = x.a();
+			Integer j = x.b();
+			Integer k = x.c();
+
 			if(k==0) {
 				r = i*i+j*j;
-				d.put(Trio.of(i, j, k), r);
+				d.put(Trio.of(i, j, k), r);// se puede sutstituir el trio.of() por x 
 			}
 			else if (i<2 || j<2){
 				r = k+i+j;
@@ -192,14 +194,90 @@ public class E2 {
 				d.put(Trio.of(i, j, k), r);
 
 			}
-			
+
 		};
 		Trio.fullSequence(a, b, s.length()).stream().forEach(con);
- return d.get(res);
-//return Stream.iterate(Trio.of(a, b, sl), t-> t.hasNext(a, b, sl), t->Trio.nextTrio(t, a, b, sl)).collect(Collectors.toList());
+		return d.get(res);
+
 	}
 	
+	public static Integer Ej2FuncionalV2(Integer a, Integer b, String s) {
+		// Similar al anterior 
+		Map<Trio, Integer> d = new HashMap<>();
+		
+		Function<Trio,Pair<Trio, Integer>> con = x-> {
+			Integer r = null; 
+			Integer i = x.a();
+			Integer j = x.b();
+			Integer k = x.c();
 
+			if(k==0) {
+				r = i*i+j*j;
+				d.put(x, r);
+			}
+			else if (i<2 || j<2){
+				r = k+i+j;
+				d.put(Trio.of(i, j, k), r);
+			}
+			else if (i%k<j%k) {
+				Integer n = j%k- i%k;
+				r= i+j+d.get(Trio.of(i-1, j/2, n));
+				d.put(x, r);
+			}			 
+
+			else {
+				Integer n = i%k- j%k;
+				r = i*j+d.get(Trio.of(i/2, j-1, n));
+				d.put(x, r);
+
+			}
+			return Pair.of(x, r);
+		};
+		Predicate<Pair<Trio, Integer>> prd = p -> p.first().equals(Trio.of(a, b, s.length())); 
+		 return Stream.iterate(Trio.of(0, 0, 0),T-> T.hasNext(a, b, s.length()),T->T.nextTrio(a, b, s.length())).map(t -> con.apply(t)).filter(prd).findFirst().get().second();
+	}
+	public static Integer Ej2FuncionalV3(Integer a, Integer b, String s) {
+		//este requiere inicializar el map 
+		//la version anterior no 
+		
+		Integer sl = s.length();
+		Map<Trio, Integer> d = new HashMap<>();
+		//d.put(Trio.of(0,0,0), 0); N va a hacer falta creo yo  pero lo dejo comentado por si acaso 
+		UnaryOperator<Pair<Trio, Integer>> con = y-> {
+			Trio x = y.first().nextTrio(a, b, sl);
+			Integer r = null; 
+			Integer i = x.a();
+			Integer j = x.b();
+			Integer k = x.c();
+
+			if(k==0) {
+				r = i*i+j*j;
+				d.put(x, r);
+			}
+			else if (i<2 || j<2){
+				r = k+i+j;
+				d.put(Trio.of(i, j, k), r);
+			}
+			else if (i%k<j%k) {
+				Integer n = j%k- i%k;
+				r= i+j+d.get(Trio.of(i-1, j/2, n));
+				d.put(x, r);
+			}			 
+
+			else {
+				Integer n = i%k- j%k;
+				r = i*j+d.get(Trio.of(i/2, j-1, n));
+				d.put(x, r);
+
+			}
+			return Pair.of(x, r);
+		};
+		
+		Predicate<Pair<Trio, Integer>> prd = p -> p.first().equals(Trio.of(a, b, s.length()));
+		
+		return Stream.iterate(Pair.of(Trio.of(0, 0, 0),0 ), p1-> p1.first().hasNext(a, b, sl),p -> con.apply(p)).
+				filter(prd).findFirst().get().second();
+	}
 
 
 
