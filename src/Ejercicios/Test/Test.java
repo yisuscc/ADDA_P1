@@ -102,9 +102,9 @@ public class Test {
 	}
 	
 	public static void main(String[] args) {
-		testEj1();
+		//testEj1();
 		//testEj2();
-		//testEj3();
-		testEj4();
+		testEj3();
+		//testEj4();
 	}
 }
