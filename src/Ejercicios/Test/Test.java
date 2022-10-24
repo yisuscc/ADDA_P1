@@ -78,6 +78,8 @@ public class Test {
 		System.out.println("Test1 (Iterativo): " + Ej3.ej3IterativoV1(file1A, file1B));
 		System.out.println("Test2 (Recursivo): " +Ej3.ej3RecursivoFinalV1(file2A, file2B));
 		System.out.println("Test3 (Funcional): "+Ej3.ej3Funcional(file3A, file3B));
+		System.out.println("Versión funcional con iteradores:");
+		System.out.println("Test3 (Funcional Version 2): "+Ej3.ej3FuncionalV2(file3A, file3B));
 	}
 	public static void testEj4 () {
 		String filePath = "ficheros/alumnos/PI1Ej4DatosEntrada.txt";
